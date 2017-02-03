@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>A scaffold for ember-osf apps</title>
+
+		<meta name="description" content="A demonstration of the ember-osf addon">
+		<meta name="author" content="Andy Boughton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+                    <h1>Ember OSF: A Demo App</h1>
+                    <h3>Or, "how to eat your own dogfood"</h3>
+                    <p>
+                        <small>Andy Boughton / <a href="https://cos.io">Center for Open Science</a></small>
+                    </p>
+                </section>
+
+                <section><h1>First, the addon</h1></section>
+
+                <section>
+                    <h2>Addon goals</h2>
+                        <ul>
+                            <li>Help build ember apps that use OSF functionality, fast</li>
+                            <li>Be usable by COS developers and external collaborators alike</li>
+                            <li>Highly (re)usable, flexible components that demonstrate best practices</li>
+                        </ul>
+
+                    <img src="assets/preprints.png">
+                </section>
+
+                <section>
+                    <h2>Dogfooding</h2>
+
+                    <blockquote>"...a slang term used to reference a scenario in which a company uses its own product to test and promote the product.[1]"</blockquote>
+
+                    <ol>
+                        <li><a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Definition</a></li>
+                        <li>In 2013: "<a href="http://allthingsd.com/20131124/while-users-lament-only-25-percent-of-yahoos-willing-eat-mail-dogfood-memo/">25% of Yahoo Employees used Yahoo Mail</a>"</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>How are we doing?</h2>
+                    <p>
+                        Inside COS we have started to use this for many projects
+                    </p>
+                    <p>
+                        This is not easy to get started! We should learn from, and improve, the setup experience- can't
+                        tell partners to "just copy the preprints repo".
+                    </p>
+                        Need to go beyond the "bundle of components" for a true project starter kit.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Pain Points I</h2>
+                    <p>
+                        We are actively working to fix some of the challenges:
+                    </p>
+                    <ul>
+                        <li><a href="https://github.com/CenterForOpenScience/ember-osf/pull/168">Installation</a>- should support NPM / ember install</li>
+                        <li><a href="https://github.com/CenterForOpenScience/ember-osf/pull/170">Secret settings</a></li>
+                        <li><a href="https://github.com/CenterForOpenScience/ember-osf/pull/171">baked-in config</a></li>
+                    </ul>
+
+                    <pre>
+                        <code class="json">"ember-osf": "git+https://github.com/CenterForOpenScience/ember-osf.git#ac254f87274044fb97d6a712efa5ff2433bd0537",</code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Pain Points II</h2>
+                    <p>
+                        Some challenges remain open items, and still require manual boilerplate to resolve. (especially
+                        UI related assets that not everyone needs)
+                    </p>
+                    <ul>
+                        <li>Users need to manually install certain bower assets</li>
+                        <li>...And <a href="https://github.com/abought/demo-ember-osf/commit/d26ef20e491a557cde440f84a55775937e988249">manually import</a> key files in <a href="https://github.com/abought/demo-ember-osf/commit/705a13900d48908f789dae031ee1f9f13f04bd49">various places</a></li>
+                        <li>Useful features aren't always well known; the docs have room to improve</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>A path forward</h2>
+
+                    <ul>
+                        <li>Don't be shy about breaking out smaller packages. (But remember <a href="https://www.npmjs.com/package/left-pad">left-pad</a>)
+                            <ul>
+                                <li>Models (just talk to the server)</li>
+                                <li>Components (if you also need UI)</li>
+                            </ul>
+                        </li>
+                        <li>Use automated addon mechanisms for importing code
+                            <ul>
+                                <li><a href="https://ember-cli.com/api/classes/Addon.html">Addons</a> can control what happens during build</li>
+                                <li><a href="https://ember-cli.com/api/classes/Blueprint.html">Blueprints can control events after install</a></li>
+                            </ul>
+                        </li>
+                        <li>Know what's possible! <a href="https://ember-cli.com/api/">https://ember-cli.com/api/</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Uh, so what?</h1>
+                    <p>
+                        <a href="https://github.com/abought/demo-ember-osf">https://github.com/abought/demo-ember-osf</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Batteries included</h2>
+                    <p>
+                        Don't just document all the steps- help people get started.
+                    </p>
+
+                    <ul>
+                        <li>Boilerplate: LICENSE, README, make the addon work</li>
+                        <li>Tools: Yarn, Sass, NVM, YUIDoc</li>
+                        <li>Best practices: Travis, linters, code coverage, Sentry. Gitignore your secrets and standardize your commands</li>
+                        <li>Nice pages: dynamic page titles, styling</li>
+                        <li>Demo tricky stuff: login, authenticated requests, (someday) pagination</li>
+                        <li>Push the envelope: Automatic accessibility testing</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Thinking collectively</h2>
+                    <ul>
+                        <li>Focus on shared problems and shared solutions</li>
+                        <li>Coordinate releases across repos</li>
+                        <li>Clear path to deprecation- don't remove stuff blindly</li>
+                        <li>Best practices: unit tests, docs, and <a href="https://github.com/CenterForOpenScience/ember-osf/pull/175">code coverage</a></li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>Code coverage: Knowing where to test</h2>
+                    <p>
+                        Ember encourages granular tests. Code coverage tells you which ones to write.
+                    </p>
+
+                    <img src="assets/coverage.png">
+                </section>
+
+                <section>
+                    <h2>Further reading</h2>
+
+                    Yes, there are docs. Really.<br>
+                    <a href="http://centerforopenscience.github.io/ember-osf/">http://centerforopenscience.github.io/ember-osf/</a>
+                </section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				slideNumber: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
