@@ -42,20 +42,21 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
                 <section>
-                    <h2>Chrome Dev Tools</h2>
+                    <h2>Chrome Dev Tools: a few highlights</h2>
+                    <small>Andy Boughton / <a href="https://cos.io">Center for Open Science</a></small>
                 </section>
 
                 <section>
                     <section>
                         <h3>The DOM Inspector</h3>
                         <p>Modify text and styles on the page, and preview changes instantly</p>
-                        <img src="assets/css_editor.png">
+                        <img src="assets/css_editor.png" class="stretch">
                     </section>
 
                     <section>
                         <h3>Additional style/ CSS tools</h3>
                         <p>Color picker</p>
-                        <img src="assets/color_picker.png">
+                        <img src="assets/color_picker.png" class="stretch">
                     </section>
                 </section>
 
@@ -65,22 +66,25 @@
                         <h3>Inspecting Network Requests</h3>
                         <p>See credentials, URLs, headers, and request/response payloads</p>
                         <img src="assets/api_errors_failure_reasons.png">
-                        <img src="assets/api_errors_failure_reasons.png">
                     </section>
                 </section>
 
                 <section>
-                    Sources
+                    <h3>Sources</h3>
                     <p>
-                        TODO: File picker, edit application code live, breakpoint debugging
+                        Edit application code live, with breakpoint debugging
                     </p>
+                    <p><a href="https://developers.google.com/web/tools/chrome-devtools/javascript/">Getting started guide</a></p>
+                    <p>Tip: <strong>Cmd + P</strong> to bring up a file picker!</p>
+                    <img src="assets/file-picker.png" class="stretch">
                 </section>
 
                 <section>
                     <h2>Application tab</h2>
                     <p>Inspect cookies and local storage (among others). See which cookies are secure!</p>
-                    <img src="assets/cookies_panel.png">
+                    <img src="assets/cookies_panel.png" class="stretch">
                 </section>
+
                 <section>
                     <h3>Timeline</h3>
                     <p>
@@ -90,10 +94,24 @@
                 </section>
 
                 <section>
-                    <h3>Experience life as another user: slow cpu, network connection, mobile device</h3>
-                    <img src="assets/cpu_throttling.png">
-                    <img src="assets/network_throttling.png">
-                    <img src="assets/mobile_layout.png">
+                    <section>
+                        <h3>Experience Life as Another User</h3>
+                    </section>
+
+                    <section>
+                        <h3>Slow CPU</h3>
+                        <img src="assets/cpu_throttling.png">
+                    </section>
+
+                    <section>
+                        <h3>Network throttling</h3>
+                        <img src="assets/network_throttling.png">
+                    </section>
+
+                    <section>
+                        <h3>Mobile layout</h3>
+                        <img src="assets/mobile_layout.png" class="stretch">
+                    </section>
                 </section>
 
                 <section>
@@ -101,8 +119,32 @@
                     <p>
                         See a list of routes, inspect rendering, and interact with ember-data (<a href="https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi?hl=en">chrome addon</a>)
                     </p>
-                    <img src="assets/ember_inspector.png">
+                    <img src="assets/ember_inspector.png" class="stretch">
                 </section>
+
+                <section>
+                    <h3>Bonus: Download size</h3>
+                    <img src="assets/large-download.png">
+
+                    <pre><code class="bash">$ optipng ember_inspector.png -out optipng-ember-inspector.png
+$ ls -lh
+-rw-r--r--  1 me  self   603K Feb 21 09:12 ember_inspector.png
+-rw-r--r--@ 1 me  self   167K Feb 21  2017 optimizilla-ember-inspector.png
+-rw-r--r--  1 me  self   328K Feb 21 09:36 optipng-ember-inspector.png</code></pre>
+                    <ul>
+                        <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization">Google article on image optimization</a></li>
+                        <li><a href="http://optimizilla.com/">Online image compression tool</a></li>
+                    </ul>
+
+                    <p><small>Note: The OptiPNG image in this case seems to be mangled; might not be a fair test</small></p>
+                </section>
+
+                <section>
+                    <h3>Demo: OSF Preprints (without the OSF)</h3>
+                    <a href="https://staging.osf.io/preprints/discover">Search page</a>
+                    (+ bonus feature: "initiator")
+                </section>
+
 			</div>
 		</div>
 
