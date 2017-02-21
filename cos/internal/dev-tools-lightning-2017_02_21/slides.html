@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>A scaffold for ember-osf apps</title>
+
+		<meta name="description" content="A demonstration of the ember-osf addon">
+		<meta name="author" content="Andy Boughton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h2>Chrome Dev Tools</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>The DOM Inspector</h3>
+                        <p>Modify text and styles on the page, and preview changes instantly</p>
+                        <img src="assets/css_editor.png">
+                    </section>
+
+                    <section>
+                        <h3>Additional style/ CSS tools</h3>
+                        <p>Color picker</p>
+                        <img src="assets/color_picker.png">
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h3>Inspecting Network Requests</h3>
+                        <p>See credentials, URLs, headers, and request/response payloads</p>
+                        <img src="assets/api_errors_failure_reasons.png">
+                        <img src="assets/api_errors_failure_reasons.png">
+                    </section>
+                </section>
+
+                <section>
+                    Sources
+                    <p>
+                        TODO: File picker, edit application code live, breakpoint debugging
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Application tab</h2>
+                    <p>Inspect cookies and local storage (among others). See which cookies are secure!</p>
+                    <img src="assets/cookies_panel.png">
+                </section>
+                <section>
+                    <h3>Timeline</h3>
+                    <p>
+                        Expose all aspects of <a href="https://developers.google.com/web/fundamentals/performance/rail">page render performance</a>: <font color="#ffd700">javascript</font>, <font color="#9932cc">style/layout</font>, <font color="#74b265">painting</font>
+                    </p>
+                    <img src="assets/timeline.png">
+                </section>
+
+                <section>
+                    <h3>Experience life as another user: slow cpu, network connection, mobile device</h3>
+                    <img src="assets/cpu_throttling.png">
+                    <img src="assets/network_throttling.png">
+                    <img src="assets/mobile_layout.png">
+                </section>
+
+                <section>
+                    <h3>The Ember Inspector</h3>
+                    <p>
+                        See a list of routes, inspect rendering, and interact with ember-data (<a href="https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi?hl=en">chrome addon</a>)
+                    </p>
+                    <img src="assets/ember_inspector.png">
+                </section>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				slideNumber: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
