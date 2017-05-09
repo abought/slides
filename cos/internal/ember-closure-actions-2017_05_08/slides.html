@@ -44,49 +44,86 @@
                 <section>
                     <h2>Ready, fire, aim</h2>
                     <h3>How to let your UI respond to logic that might fail</h3>
+					<h4>Getting closure through closure actions</h4>
                     <small>Andy Boughton / <a href="https://cos.io">Center for Open Science</a></small>
                     <br>
                     <small>May 9, 2017</small>
                 </section>
 
                 <section>
-                    <h2>Actions vs functions</h2>
-                    <blockquote>Your app will often need a way to let users interact with controls that change application state.</blockquote>
-
-					TODO: Add a code example of calling an action vs a function, both on same component
-
-					Within a component, vs passing down
-                </section>
+                    <h2>Actions: example</h2>
+					<pre><code class="javascript">
+actions: {
+    doSomething() {
+        console.log('Hi!');
+    }
+}</code></pre>
+					<textarea class="code javascript" rows="1" cols="80" disabled="true"><button onclick={{action 'doSomething'}}>Click me</button></textarea>
+				</section>
 
 				<section>
-					<h2>Caveat: Data down, actions up</h2>
-					When we pass logic to components, we pass actions
+					<h2>Why not just use functions?</h2>
+					<div style="text-align:left">For shared, reusable logic, functions are great; still use them when appropriate. Actions are good for templates that deal with user interaction:</div>
+					<ul>
+						<li>Can pass shared logic to child components</li>
+						<li>Preserve a reference to their parent scope</li>
+						<li>Can pass params via templates</li>
+						<li>Support advanced behaviors like currying</li>
+					</ul>
+					<blockquote cite="https://guides.emberjs.com/v2.8.0/templates/actions/">Your app will often need a way to let users interact with controls that change application state.</blockquote>
+				</section>
 
-					This is a problem for network traffic- the component needs to know the result of an action
+				<section>
+					<h2>Actions: Don't Look Back</h2>
+					<div>Traditionally passed Ember actions are "fire and forget". For a save button, this can be very dangerous!!</div>
+					<pre><code class="javascript">this.send('goTalkToAServer');</code></pre>
+					<img src="assets/nye-hard.jpg" class="stretch">
+				</section>
 
-					Previous slide explained difference
+				<section>
+					<h2>ISP: A problem and a solution</h2>
+					<div><a href="https://github.com/CenterForOpenScience/isp/commit/19273a0db794a6639b29dda4ac824b144c2d31f9">Save error</a> / <a href="https://github.com/CenterForOpenScience/exp-addons/pull/223/files">The fix</a>
+					</div>
+				</section>
+
+				<section>
+					<h3>Closure actions have return values!</h3>
+					<div>The key is that <em>closure actions can return a promise</em></div>
+					<div>The component calls the action in a special way that consumes the return value.</div>
+					<div>This is most useful for passed-in actions.</div>
+					<pre><code class="javascript">/**
+* Logic that we passed from a parent.
+* Expect an action with call signature method(textValue)
+* @property
+*/
+passedInActionHandle: null,
+actions: {
+  clickAButtonAndSaveTheModel() {
+    this.attrs.passedInActionHandle().catch(this.showErrorZOMG);
+  }
+}</code></pre>
+				</section>
+
+				<section>
+					<h2>Don't mix and match</h2>
+					<div>Old style Ember actions worked differently- returning a truthy value triggered <em>action bubbling</em>. Avoid mixing old and new style actions.</div>
+
+					<small><blockquote cite="https://guides.emberjs.com/v1.10.0/templates/actions/#toc_action-bubbling">If the controller does not implement a method with the same name as the action in its actions object, the action will be sent to the router, where the currently active leaf route will be given a chance to handle the action... To continue bubbling the action, you must return true from the handler... This allows you to create a button that has different behavior based on where you are in the application.</blockquote></small>
 				</section>
 
 				<section>
 					<h2>Bonus: currying</h2>
-					Show how this can be used to make nice APIs without baking in design assumptions to components, eg changeNodeTitle(node, title) --> `changeNodeTitle(title)`
+					<div>The template action helper supports <em>currying</em>- a way to build partial functions that bake in some arguments</div>
+
+					<div><a href="https://github.com/CenterForOpenScience/ember-osf/blob/develop/addon/mixins/taggable-mixin.js#L24">Taggable mixin</a> / <a href="https://github.com/CenterForOpenScience/ember-osf/blob/0019dd8d4ee5fec84995e7a2c3f83675536ccb17/addon/components/tags-widget/component.js#L16">Usage example</a></div>
+					<div><a href="https://github.com/CenterForOpenScience/ember-osf/blob/0019dd8d4ee5fec84995e7a2c3f83675536ccb17/addon/mixins/node-actions.js#L46">An example without currying (NodeActions)</a></div>
 				</section>
 
 				<section>
-					<h2>Bonus: no intermediate actions</h2>
-					Pass action directly; don't need to define intermediate actions
+					<h2>Bonus: no middle actions</h2>
+					<div>Without bubbling, you don't need `this.send` boilerplate in every intermediate component.</div>
+					<div>This makes layering components nicer- just keep passing the action handle down</div>
 				</section>
-
-				<section>
-					<h2>Bonus: action bubbling</h2>
-					Show how we can get subtle effects if we try to mix closure actions + bubbling. Pick a style and run with it
-				</section>
-
-                <section>
-                    <h2>Demo: ISP</h2>
-                    <div><a href="https://github.com/CenterForOpenScience/isp/commit/19273a0db794a6639b29dda4ac824b144c2d31f9">Save error</a> / <a href="https://github.com/CenterForOpenScience/exp-addons/pull/223/files">The fix</a>
-					</div>
-                </section>
 
 				<section>
 					<h2>References</h2>
