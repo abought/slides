@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The Secret Life of JavaScript</title>
+
+		<meta name="description" content="The Secret Life of a line of JavaScript">
+		<meta name="author" content="Andy Boughton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h2>The Secret Life of JavaScript</h2>
+					<h3>...And what it means for your sanity</h3>
+                    <small>Andy Boughton / <a href="https://twitter.com/occsci">@occsci</a></small>
+                </section>
+
+				<section>
+					<h2>In the old days...</h2>
+					<pre><code class="javascript">function myFunction() {
+  // return 12;
+}</code></pre>
+				</section>
+
+				<section>
+					<h2>...And then things got weird</h2>
+					<img src="assets/logo-madness.png" class="stretch">
+
+					<div><small>https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f</small></div>
+				</section>
+
+				<section>
+					<h1>WHY?</h1>
+					<h2>(A tragegy in two acts)</h2>
+				</section>
+
+				<section>
+					<section>
+						<h2>The Law of Leaky Abstractions</h2>
+						<img src="assets/batman.jpeg">
+					</section>
+
+					<section>
+						<h2>Data takes time to transfer</h2>
+						<div>A lot of the time loading a page is spent just waiting</div>
+						INSERT HPBN style graphic / waterfall diagram
+						Cover asset concatenation
+					</section>
+
+					<section>
+						<h2>You pay for bandwidth</h2>
+						Uglification/ minification
+					</section>
+
+					<section>
+						<h2>Pretending not to write JS</h2>
+						Modules to keep code isolated
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Backwards compatibility</h2>
+						<h3>...is hard</h3>
+					</section>
+
+					<section>
+						<h2>Premade packages handle the edge cases</h2>
+						Package managers & polyfills
+					</section>
+
+					<section>
+						<h2>Pretending to be cool</h2>
+						Transpilation + asset pipelines (Babel)
+					</section>
+				</section>
+
+				<section>
+					<h2>Source maps</h2>
+					Help connect the code you wrote to the code that gets run
+				</section>
+
+				<section>
+					<h2>Delivering to the user</h2>
+					Alternatives for library bundling (eg CDNs)
+				</section>
+
+				<section>
+					<h2>Tools to manage complexity</h2>
+					Gulp, webpack, yeoman boilerplate, cli tools for frameworks (angular, ember, polymer), etc
+				</section>
+
+				<section>
+					<h2>A post-mortem</h2>
+					- One function
+					- x lines of code
+					- y individual author contributors around the world building these libraries
+					- Wait, what were you trying to do again?
+				</section>
+
+				<section>
+					<h1>Further reading</h1>
+					- HPBN for network optimizations
+					- Compression
+					- Identifying unused code (new chrome feature)
+					- Licensing?
+					- CDNs
+					- Other layers not covered
+				</section>
+
+				<section>Questions?</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				slideNumber: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
