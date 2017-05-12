@@ -66,46 +66,71 @@
 					<h2>(A tragegy in two acts)</h2>
 				</section>
 
-				<section>
-					<section>
-						<h2>The Law of Leaky Abstractions</h2>
-						<img src="assets/batman.jpeg">
-					</section>
+                <section>
+                    <section>
+                        <h2>The Law of Leaky Abstractions</h2>
+                        <img src="assets/batman.jpeg">
+                    </section>
 
-					<section>
-						<h2>Data takes time to transfer</h2>
-						<div>A lot of the time loading a page is spent just waiting</div>
-						INSERT HPBN style graphic / waterfall diagram
-						Cover asset concatenation
-					</section>
+                    <section>
+                        <blockquote>
+                            "That is, approximately, the magic of TCP. It is what computer scientists like to call an
+                            abstraction: a simplification of something much more complicated that is going on under
+                            the covers."
+                        </blockquote>
+                        <div>-<a href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">Joel Spolsky</a></div>
+                    </section>
+                </section>
 
-					<section>
-						<h2>You pay for bandwidth</h2>
-						Uglification/ minification
-					</section>
+                <section>
+                    <section>
+                        <h2>Backwards compatibility</h2>
+                        <h3>...is hard</h3>
+                    </section>
 
-					<section>
-						<h2>Pretending not to write JS</h2>
-						Modules to keep code isolated
-					</section>
-				</section>
+                    <section>
+                        Your site needs to work for many users
 
-				<section>
-					<section>
-						<h2>Backwards compatibility</h2>
-						<h3>...is hard</h3>
-					</section>
+                        ...even if their computers are old
 
-					<section>
-						<h2>Premade packages handle the edge cases</h2>
-						Package managers & polyfills
-					</section>
+                        This adds complexity
 
-					<section>
-						<h2>Pretending to be cool</h2>
-						Transpilation + asset pipelines (Babel)
-					</section>
-				</section>
+                        TODO: Insert browser usage stats slide, as of current date; number years lifetime?
+
+                        Include mobile stats (do browsers get updated more slowly there?)
+                    </section>
+                </section>
+
+
+                <section>
+                    <h2>Data takes time to transfer</h2>
+                    <div>A lot of the time loading a page is spent just waiting</div>
+                    INSERT HPBN style graphic / waterfall diagram
+                    Cover asset concatenation
+                </section>
+
+                <section>
+                    <h2>You pay for bandwidth</h2>
+                    Uglification/ minification
+                </section>
+
+                <section>
+                    <h2>Pretending not to write JS</h2>
+                    Modules to keep code isolated
+
+                    TypeScript etc to help you develop
+                </section>
+
+                <section>
+                    <h2>Premade packages handle the edge cases</h2>
+                    Package managers & polyfills
+                </section>
+
+                <section>
+                    <h2>Pretending to be cool</h2>
+                    Transpilation + asset pipelines (Babel)
+                </section>
+
 
 				<section>
 					<h2>Source maps</h2>
