@@ -63,12 +63,13 @@
 
 				<section>
 					<h1>WHY?</h1>
-					<h2>(A tragegy in two acts)</h2>
+					<h2>(A tragedy in two acts)</h2>
 				</section>
 
                 <section>
                     <section>
-                        <h2>The Law of Leaky Abstractions</h2>
+                        <h2>Cause 1</h2>
+                        <h3>The Law of Leaky Abstractions</h3>
                         <img src="assets/batman.jpeg">
                     </section>
 
@@ -84,35 +85,77 @@
 
                 <section>
                     <section>
-                        <h2>Backwards compatibility</h2>
-                        <h3>...is hard</h3>
+                        <h2>Cause 2</h2>
+                        <h3>Backwards compatibility</h3>
+                        <h4>...is hard</h4>
                     </section>
 
                     <section>
-                        Your site needs to work for many users
+						<h2>Users just want content</h2>
+						<div>
+							<img src="assets/mobile-share-apr-2017.png" style="float:left; width:45%">
+							<img src="assets/desktop-share-apr-2017.png" style="float:right; width: 45%">
+						</div>
 
-                        ...even if their computers are old
+                        <!-- TODO: Insert browser usage stats slide, as of current date; number years lifetime?
+						Caniuse.com as stats by age?
 
-                        This adds complexity
-
-                        TODO: Insert browser usage stats slide, as of current date; number years lifetime?
+						https://en.wikipedia.org/wiki/Timeline_of_web_browsers
+						http://caniuse.com/usage-table
 
                         Include mobile stats (do browsers get updated more slowly there?)
+                        -->
+
+                        <small>https://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0</small>
                     </section>
                 </section>
 
 
                 <section>
                     <h2>Data takes time to transfer</h2>
-                    <div>A lot of the time loading a page is spent just waiting</div>
-                    INSERT HPBN style graphic / waterfall diagram
-                    Cover asset concatenation
+                    <div style="float:left; text-align: left; width:75%">
+						<p>Each file gets downloaded separately</p>
+
+						<p>Every request incurs some time waiting</p>
+
+						<p>Waiting makes things slow</p>
+					</div>
+                    <img src="assets/waterfall-osf-sejcv.png" class="stretch" style="float:right; width:20%">
+					<!-- TODO: Add annotations to figure (green waiting, hollow bar means queued) -->
                 </section>
 
+				<section>
+					<h2>Practice 1</h2>
+					<h3>Asset concatenation</h3>
+					<pre><code class="javascript">// Put two files of code in a single file
+// Fewer requests, less waiting!
+function myCode() {
+  return 12;
+}
+
+function yourCode() {
+  return 24;
+}</code></pre>
+
+					<small>
+						<img src="assets/tip.jpeg" style="background:none; border:none; box-shadow:none; width:40px; height:40px; vertical-align:middle">
+						You may see these files called "app.js" (your code) and "vendor.js" (shared libraries)
+					</small>
+				</section>
+
                 <section>
-                    <h2>You pay for bandwidth</h2>
-                    Uglification/ minification
+                    <h2>Big files take time</h2>
+                    <h3>Make them smaller</h3>
                 </section>
+
+				<section>
+					<h2>Practice 2</h2>
+					<h3>Uglification / minification</h3>
+
+					<pre><code class="javascript">
+// TODO: Add some example code for this concept (generated if possible)
+					</code></pre>
+				</section>
 
                 <section>
                     <h2>Pretending not to write JS</h2>
@@ -163,6 +206,8 @@
 					- Licensing?
 					- CDNs
 					- Other layers not covered
+                    - http://youmightnotneedjquery.com/
+                    - https://hpbn.co/
 				</section>
 
 				<section>Questions?</section>
