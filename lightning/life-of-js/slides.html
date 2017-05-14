@@ -50,7 +50,7 @@
 				<section>
 					<h2>In the old days...</h2>
 					<pre><code class="javascript">function myFunction() {
-  // return 12;
+  return 12;
 }</code></pre>
 				</section>
 
@@ -112,15 +112,17 @@
 
 
                 <section>
-                    <h2>Data takes time to transfer</h2>
-                    <div style="float:left; text-align: left; width:75%">
+					<div style="float:left; text-align: left; width:75%">
+						<h2>Concept 1</h2>
+						<h3>Data takes time to transfer</h3>
+
 						<p>Each file gets downloaded separately</p>
 
 						<p>Every request incurs some time waiting</p>
 
 						<p>Waiting makes things slow</p>
 					</div>
-                    <img src="assets/waterfall-osf-sejcv.png" class="stretch" style="float:right; width:20%">
+                    <img src="assets/waterfall-osf-sejcv.png" style="float:right; width:20%">
 					<!-- TODO: Add annotations to figure (green waiting, hollow bar means queued) -->
                 </section>
 
@@ -144,7 +146,7 @@ function yourCode() {
 				</section>
 
                 <section>
-                    <h2>Big files take time</h2>
+                    <h2>Concept 2: Big files take time</h2>
                     <h3>Make them smaller</h3>
                 </section>
 
@@ -152,50 +154,106 @@ function yourCode() {
 					<h2>Practice 2</h2>
 					<h3>Uglification / minification</h3>
 
-					<pre><code class="javascript">
-// TODO: Add some example code for this concept (generated if possible)
-					</code></pre>
+					<div style="text-align: left; font-size: 32px;">Before</div>
+					<pre><code class="javascript">/**
+* A comment meant to supply documentation for developers
+*/
+function myFunction(param1, param2, unusedParam) {
+  if (param1 > param2) {
+    return 12;
+  }
+  return param1 + param2;
+}</code></pre>
+					<div style="text-align: left; font-size: 32px;">After:</div>
+					<pre><code class="javascript">function myFunction(n,t){return n>t?12:n+t}</code></pre>
 				</section>
-
-                <section>
-                    <h2>Pretending not to write JS</h2>
-                    Modules to keep code isolated
-
-                    TypeScript etc to help you develop
-                </section>
-
-                <section>
-                    <h2>Premade packages handle the edge cases</h2>
-                    Package managers & polyfills
-                </section>
-
-                <section>
-                    <h2>Pretending to be cool</h2>
-                    Transpilation + asset pipelines (Babel)
-                </section>
 
 
 				<section>
-					<h2>Source maps</h2>
-					Help connect the code you wrote to the code that gets run
+					<h2>Concept 3</h2>
+					<h3>Library and package management</h3>
+					<img src="assets/npm-logo.png" style="max-width: 30%; vertical-align: middle">
+					<img src="assets/yarn_logo.png" style="max-width: 30%; vertical-align: middle">
+					<img src="assets/bower_logo.png" style="max-width: 30%; vertical-align: middle">
+				</section>
+
+				<section>
+					<h2>Practice 3a</h2>
+					<h3>Keep dependencies separate</h3>
+					<div>
+						Make it clear what third party code you depend on
+					</div>
+
+					<div>
+						But keep it separate- easier to upgrade and track
+					</div>
+
+					<div style="position:fixed; bottom:0; text-align: center">
+						<small>(Usually these will be in <span style="color: orange">bower.json</span> and <span style="color: red">package.json)</span></small>
+					</div>
+					<!-- TODO: Introduce semver? -->
+				</section>
+
+				<section>
+					<h2>Practice 3b</h2>
+					<!-- TODO: Make this a standalone, not 3b -->
+					<h3>Keep code isolated (with modules)</h3>
+					<div>
+						In JavaScript, everything is global
+						<!-- TODO: Add example of two search functions; show module example, side by side. Keep short, or maybe work in webpack, requirejs etc etc etc mention -->
+					</div>
+				</section>
+
+				<section>
+					<h2>Concept 4</h2>
+					<h3>Tomorrow's code, yesterday</h3>
+				</section>
+
+				<section>
+					<section>
+						<h2>Practice 4 (optional)</h2>
+						<h3>Transpilers and polyfills</h3>
+						<div>
+							Programming languages sometimes get new features. But old browsers can't run them.
+						</div>
+
+						<div>
+							Transpilers rewrite new syntax into old syntax. Polyfills let you use new features that aren't actually there.
+						</div>
+						<!-- TODO: Flesh out slide, add example, eg ajax fetch api as example? -->
+
+					</section>
+
+				</section>
+
+				<section>
+					<h2>Concept 5</h2>
+					<h3>The code you write vs the code you run</h3>
+				</section>
+
+				<section>
+					<h2>Practice 5</h2>
+					<h3>Source maps</h3>
+					<p>
+						The browser may see different code. This makes debugging hard.
+					</p>
+
+					<p>
+						Source maps connect the code you wrote to the error message you see in the browser. Use them!
+					</p>
+					<!-- TODO: Example -->
+					<!-- TODO Add link to source map compression article, because it's cool -->
 				</section>
 
 				<section>
 					<h2>Delivering to the user</h2>
 					Alternatives for library bundling (eg CDNs)
+					<!-- TODO: Mention caching? May cut for fit/ time -->
 				</section>
 
 				<section>
 					<h2>Tools to manage complexity</h2>
 					Gulp, webpack, yeoman boilerplate, cli tools for frameworks (angular, ember, polymer), etc
-				</section>
-
-				<section>
-					<h2>A post-mortem</h2>
-					- One function
-					- x lines of code
-					- y individual author contributors around the world building these libraries
-					- Wait, what were you trying to do again?
 				</section>
 
 				<section>
@@ -208,6 +266,12 @@ function yourCode() {
 					- Other layers not covered
                     - http://youmightnotneedjquery.com/
                     - https://hpbn.co/
+				</section>
+
+				<section>
+					<h2>A parting thought</h2>
+					<p>Tools exist to solve problems</p>
+					<p>You may not have those problems (yet)</p>
 				</section>
 
 				<section>Questions?</section>
