@@ -12,6 +12,7 @@ import re
 
 from bs4 import BeautifulSoup
 
+
 def usage_by_browser(usage_fn):
     browser_pattern = re.compile('([^0-9.]+) ([0-9.]+)')
     stats = collections.defaultdict(dict)
@@ -45,6 +46,7 @@ def _find_table(soup, table_id):
 def wikipedia_to_release_dates(wik_fn, table_id):
     """Convert the 2010s table into release dates by start of month as initial stab at release dates"""
     release_info = collections.defaultdict(dict)
+    version_pattern = re.compile('([0-9.]+)*')
 
     with open(wik_fn) as f:
         text = f.read()
@@ -69,7 +71,8 @@ def wikipedia_to_release_dates(wik_fn, table_id):
             for index, entry in enumerate(release_ids):
                 if entry:
                     browser_name = browser_names[index]
-                    release_info[browser_name][entry] = datetime.datetime.strptime(f'{month} {cur_year}', '%b %Y')
+                    version_string = version_pattern.match(entry).group()
+                    release_info[browser_name][version_string] = datetime.datetime.strptime(f'{month} {cur_year}', '%b %Y')
 
     return release_info
 
@@ -89,3 +92,6 @@ if __name__ == '__main__':
 
     wiki_fn = 'Timeline of web browsers - Wikipedia.html'
     releases = wikipedia_to_release_dates(wiki_fn, '2010s')
+
+    from pprint import pprint as pp
+    pp(releases)
