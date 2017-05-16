@@ -39,15 +39,39 @@ def _find_table(soup, table_id):
     """CSS :has isn't official yet, so hack
     
     markup is ID span inside h3, and table is next sibling after that"""
-    return soup.select(f'span[id="{table_id})"]')[0].parent.find_next_siblings('table')
+    return soup.select(f'span[id="{table_id}"]')[0].parent.find_next_siblings('table')[0]
 
 
 def wikipedia_to_release_dates(wik_fn, table_id):
     """Convert the 2010s table into release dates by start of month as initial stab at release dates"""
+    release_info = collections.defaultdict(dict)
+
     with open(wik_fn) as f:
         text = f.read()
 
     soup = BeautifulSoup(text, 'html.parser')
+    table = _find_table(soup, table_id)
+
+    browser_names = []
+    cur_year = None
+    for row in table.find_all('tr'):
+        # Either data or headers, but won't be both
+        headers = row.find_all('th')
+        if headers:
+            # Track what we are currently parsing
+            cur_year = headers[0].get_text()
+            names = headers[1:]
+            browser_names = [n.get_text() for n in names]
+        else:
+            data = row.find_all('td')
+            month = data[0].get_text()
+            release_ids = [n.get_text() for n in data[1:]]
+            for index, entry in enumerate(release_ids):
+                if entry:
+                    browser_name = browser_names[index]
+                    release_info[browser_name][entry] = datetime.datetime.strptime(f'{month} {cur_year}', '%b %Y')
+
+    return release_info
 
 
 if __name__ == '__main__':
