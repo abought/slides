@@ -2,19 +2,47 @@
 Convert monthly browser usage stats and release timelines to a standard usable representation
 
 Usage CSV downloaded from : https://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0
+Alternate source: http://gs.statcounter.com/browser-version-market-share
 Timeline: https://en.wikipedia.org/wiki/Timeline_of_web_browsers
 """
 
 import collections
 import csv
 import datetime
+from pprint import pprint as pp
 import re
 
 from bs4 import BeautifulSoup
 
 
-def usage_by_browser(usage_fn):
+def split_browser(browser_string):
+    """Split browser version string into version and number (if applicable)"""
     browser_pattern = re.compile('([^0-9.]+) ([0-9.]+)')
+    match = browser_pattern.match(browser_string)
+    if match:
+        name, version = match.groups()
+    else:
+        name = browser_string
+        version = '???'
+    return name, version
+
+def statcounter_browser_version(usage_fn, month=-1):
+    stats = collections.defaultdict(dict)
+
+    # Headers contain the browser strings
+    with open(usage_fn, 'r') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    recent_data = rows[month]
+    for k, v in recent_data.items():
+        if k == 'Date':
+            continue
+        name, version = split_browser(k)
+        stats[name][version] = v
+    return stats
+
+def netmarket_usage_by_browser(usage_fn):
     stats = collections.defaultdict(dict)
 
     with open(usage_fn, 'r') as f:
@@ -24,15 +52,8 @@ def usage_by_browser(usage_fn):
         for row in reader:
             print(row)
             browser, usage = row
-            match = browser_pattern.match(browser)
-            if match:
-                name, version = match.groups()
-            else:
-                name = browser
-                version = '???'
-
+            name, version = split_browser(browser)
             stats[name][version] = usage
-
     return stats
 
 
@@ -85,13 +106,23 @@ if __name__ == '__main__':
     # desktop_usage = usage_by_browser(desktop_fn)
 
     # TODO: Merge usage stats/ identify better data source (netmarketshare's have many anomalies)
-    # from pprint import pprint as pp
     # pp(mobile_usage)
     # pp(desktop_usage)
 
+    stats_fn = 'statcounter-browser_version-ww-monthly-201604-201704.csv'
+    recent_stats = statcounter_browser_version(stats_fn)
+    pp(recent_stats)
 
     wiki_fn = 'Timeline of web browsers - Wikipedia.html'
     releases = wikipedia_to_release_dates(wiki_fn, '2010s')
 
-    from pprint import pprint as pp
     pp(releases)
+
+    print('Version strings?')
+    print(sorted(recent_stats['Firefox'].keys()))
+    print('\n')
+    print(sorted(releases['Firefox'].keys()))
+
+    # TODO Combine stats; key names are same when there's overlap; final plot will need to normalize a bit for cleanup
+    # We want to plot USAGE by AGE to start (x % attributed to time window, 3-tuples?)
+    # Then plot this as a cumulative function, matplotlib for demo, then feed to d3 for presentation
