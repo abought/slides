@@ -43,11 +43,11 @@
 			<div class="slides">
                 <section>
                     <h2>Ready, fire, aim</h2>
-                    <h3>How to let your UI respond to logic that might fail</h3>
+                    <h3>Letting UI respond to failure</h3>
 					<h4>Getting closure through closure actions</h4>
                     <small>Andy Boughton / <a href="https://cos.io">Center for Open Science</a></small>
                     <br>
-                    <small>May 9, 2017</small>
+                    <small>May 23, 2017</small>
                 </section>
 
                 <section>
@@ -58,19 +58,21 @@ actions: {
         console.log('Hi!');
     }
 }</code></pre>
-					<textarea class="code javascript" rows="1" cols="80" disabled="true"><button onclick={{action 'doSomething'}}>Click me</button></textarea>
+					<textarea class="code javascript" rows="1" cols="80" disabled><button onclick={{action 'doSomething'}}>Click me</button></textarea>
 				</section>
 
 				<section>
-					<h2>Why not just use functions?</h2>
-					<div style="text-align:left">For shared, reusable logic, functions are great; still use them when appropriate. Actions are good for templates that deal with user interaction:</div>
+					<h2>More than just functions</h2>
+					<div style="text-align:left">Actions are good for templates/ user interaction:</div>
 					<ul>
-						<li>Can pass shared logic to child components</li>
 						<li>Preserve a reference to their parent scope</li>
+						<li>Can pass shared logic to child components</li>
 						<li>Can pass params via templates</li>
 						<li>Support advanced behaviors like currying</li>
 					</ul>
+
 					<blockquote cite="https://guides.emberjs.com/v2.8.0/templates/actions/">Your app will often need a way to let users interact with controls that change application state.</blockquote>
+
 				</section>
 
 				<section>
@@ -82,7 +84,8 @@ actions: {
 
 				<section>
 					<h2>ISP: A problem and a solution</h2>
-					<div><a href="https://github.com/CenterForOpenScience/isp/commit/19273a0db794a6639b29dda4ac824b144c2d31f9">Save error</a> / <a href="https://github.com/CenterForOpenScience/exp-addons/pull/223/files">The fix</a>
+					<div>
+						<a href="https://github.com/CenterForOpenScience/isp/commit/19273a0db794a6639b29dda4ac824b144c2d31f9">Save error</a> / <a href="https://github.com/CenterForOpenScience/exp-addons/pull/223/files">The fix</a>
 					</div>
 				</section>
 
