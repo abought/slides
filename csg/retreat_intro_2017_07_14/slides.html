@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Software for research(ers)</title>
+
+  <meta name="description" content="Software for research(ers)">
+  <meta name="author" content="Andy Boughton">
+
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/simple.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+      if (window.location.search.match(/print-pdf/gi)) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+          document.getElementsByTagName('head')[0].appendChild(link);
+      }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <style>
+    .reveal section img {
+      border: none;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+      <h2>Software for research(ers)</h2>
+      <h4>*Plus bonus cat photos</h4>
+      <small>Andy Boughton / <a href="https://sph.umich.edu/csg/">Center for Statistical Genetics</a></small>
+      <br>
+      <small>July 2017</small>
+    </section>
+    <section>
+      <img src="assets/doppler.JPG" width="40%"><img src="assets/doppler-pi.JPG" width="40%">
+    </section>
+
+    <section>
+      <h2>What I do here</h2>
+
+      <!-- TODO Add locuszoom and genes for good logos -->
+      <ul>
+        <li>
+          <span style="color:cornflowerblue">Applications Programmer/Analyst (I write code)</span>
+          <ul>
+            <li>Python (various)</li>
+            <li>JavaScript/ full stack web development</li>
+            <li style="color:#CCC">Solve problems and languages will follow</li>
+          </ul>
+        </li>
+        <li>
+          <span style="color:orangered">Topics I can drone on about</span>
+          <ul>
+            <li>Usability / Accessibility</li>
+            <li>Front-end security considerations</li>
+            <li>Open science/ open data</li>
+          </ul>
+        </li>
+
+      </ul>
+    </section>
+
+    <section>
+      <h2>Act I: Chemistry (PhD, 2011)</h2>
+      <ul>
+        <li>
+          Studied the behavior of proteins at interfaces
+          <ul>
+            <li>Molecular Dynamics Simulations</li>
+            <li>Sum Frequency Generation Vibrational Spectroscopy</li>
+          </ul>
+
+        </li>
+      </ul>
+
+      <div>
+        <img src="assets/gabg-orie.gif" style="border:none; width:49%">
+        <img src="assets/sfg-atr-abstract.gif" style="border:none; width:49%">
+      </div>
+    </section>
+
+    <section>
+      <h3>Act II: Life among the engineers</h3>
+      <ul>
+        <li>
+          DARPA AVM project: crowdsourced vehicle designs
+        </li>
+        <li>
+          Built tools to collaboratively capture component designs
+        </li>
+        <li>
+          Wrote code to predict vehicle properties based on geometry models
+        </li>
+      </ul>
+
+      <img src="assets/FANG.jpg" class="stretch">
+    </section>
+
+    <section>
+      <h3>Act III: Thinking about collaboration</h3>
+      <div>
+        <ul>
+          <li>Nonprofit technology startup (Charlottesville, VA)</li>
+          <li>Web applications to help researchers share data</li>
+          <li>Emphasis on reusable libraries and APIs</li>
+          <li>Preprint service, participant recruiting, many other projects</li>
+        </ul>
+      </div>
+
+      <img src="assets/cos_logo.original.png">
+    </section>
+
+    <section>
+      <h2>How it all ties together</h2>
+      <p>Modern instruments are slowly turning data collection from an artisanal good to a commodity</p>
+      <p>New opportunities if you can make sense of the data</p>
+      <p>The really good discoveries require combining approaches</p>
+      <p>...and incentives to make it happen</p>
+    </section>
+
+    <section>
+      <h2>Software... for researchers</h2>
+      <ul>
+        <li>Evolve requirements but preserve communities</li>
+        <li>"What can we get away with breaking?"</li>
+        <li>Central servers are fragile- be agnostic about entry points</li>
+        <li>Tools are fragile- ambiguous code will break</li>
+        <li>Tools may outlast students, eventually documentation is wrong</li>
+      </ul>
+      <small><sup>*</sup> Opinions my own, if even that</small>
+    </section>
+
+    <section>
+      <blockquote>
+        In thinking about why the technique has been so widely used, I’ve come to the following conclusions. First,
+        it solves a common problem... Second, the method was spelled out in detail... including... a sample computer
+        subroutine.
+      </blockquote>
+      <footer>
+        <small>Abraham Savitzky, commentary on journal's 5th most cited paper 1945-1999:<br>
+          <a href="https://dx.doi.org/10.1021/ac00190a744">Analytical Chemistry, 1989, 61 (15), pp 921A–923A</a></small>
+        <br>
+      </footer>
+    </section>
+
+    <section>
+      <section>
+        <h2>Thanks!</h2>
+        <img src="assets/abecasis-group.jpg" class="stretch">
+      </section>
+
+      <section></section>
+    </section>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.js',
+                async: true,
+                condition: function () {
+                    return !!document.body.classList;
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.js',
+                async: true,
+                condition: function () {
+                    return !!document.body.classList;
+                }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
