@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Git for... fun?</title>
+
+  <meta name="description" content="Software for research(ers)">
+  <meta name="author" content="Andy Boughton">
+
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/simple.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+      if (window.location.search.match(/print-pdf/gi)) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+          document.getElementsByTagName('head')[0].appendChild(link);
+      }
+  </script>
+
+  <style>
+    .reveal section img {
+      border: none;
+    }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+      <h2>Git for <strike>fun and</strike> profit</h2>
+      <small>Andy Boughton / <a href="https://sph.umich.edu/csg/">Center for Statistical Genetics</a></small>
+      <br>
+      <small>July 14, 2017</small>
+    </section>
+
+    <section>
+      <section>
+        <img src="assets/git-interpret-stash.png" class="stretch">
+      </section>
+
+      <section>
+        <h2>(no, not really)</h2>
+        <a href="https://git-man-page-generator.lokaltog.net/#ed594236d62ca97978efaf77b711ba8c">https://git-man-page-generator.lokaltog.net/</a>
+      </section>
+
+      <section>
+        <blockquote>
+          “How can I delete a remote?”<br>
+          <em>“git remote rm”</em>, replied Master Git.<br>
+          “And how can I delete a branch?”<br>
+          <em>“git branch -d”</em>, replied Master Git.
+        </blockquote>
+
+        <a href="http://stevelosh.com/blog/2013/04/git-koans/">http://stevelosh.com/blog/2013/04/git-koans/</a>
+      </section>
+    </section>
+
+    <section>
+      <h2>Lots of power</h2>
+      <h3>But running new commands is scary</h3>
+    </section>
+
+    <section>
+      <section>
+        <h1>git reflog</h1>
+        <img src="assets/safety-float.jpg" class="stretch">
+      </section>
+
+      <section>
+        <h2>Your safety net</h2>
+      </section>
+
+      <section>
+        <blockquote>
+          Reference logs, or "reflogs", record when the tips of branches and other references were updated in
+          the local repository
+        </blockquote>
+      </section>
+
+      <section>
+        <pre><code class="python">def perfect_code():
+    return True</code></pre>
+
+        <pre><code class="bash">$ git init
+$ git add .
+$ git commit -m "O(1) sort algorithm"
+
+$ git log --oneline
+2e5b760 O(1) sort algorithm</code></pre>
+      </section>
+
+      <section>
+        <pre><code class="python">def perfect_code():
+    """Documentation makes it even better!"""
+    return False</code></pre>
+
+        <pre><code class="bash">$ git add .
+$ git commit --amend</code></pre>
+      </section>
+
+      <section>
+        <pre><code class="bash">$ git log --oneline
+d14023e O(1) sort algorithm
+$ cat test.py
+def perfect_code():
+    """Documentation makes it even better!"""
+  	return False</code></pre>
+      </section>
+
+      <section>
+        <h2>Uh-oh</h2>
+        <h4>...Did I just lose the good version?</h4>
+      </section>
+
+      <section>
+        <pre><code class="bash">$ git reflog
+d14023e HEAD@{0}: commit (amend): O(1) sort algorithm
+2e5b760 HEAD@{1}: commit (initial): O(1) sort algorithm
+$ git checkout 2e5b760
+Previous HEAD position was d14023e... O(1) sort algorithm
+HEAD is now at 2e5b760... O(1) sort algorithm
+$ cat test.py
+def perfect_code():
+	return True</code></pre>
+      </section>
+
+      <section>
+        <h2>Summary</h2>
+        <ul>
+          <li>You don't "lose" changes- even when you rewrite git history</li>
+          <li>There is a copy of the change if you know where to look</li>
+          <li>This makes it less scary to try new things</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Things with reflogs</h2>
+        <p>Git stash, change between branches, rebase, merges, etc</p>
+      </section>
+
+      <section>
+        <h2>Caveats</h2>
+        <ul>
+          <li>Only works for changes Git knows about (unsaved files are still lost)</li>
+          <li>Your reflog doesn't get pushed to GitHub- for your computer only<sup>*</sup></li>
+          <li>The reflog is not permanent, so don't forever</li>
+        </ul>
+
+        <small><sup>*</sup>...Though GitHub has its own reflog, <a href="https://objectpartners.com/2014/02/11/recovering-a-commit-from-githubs-reflog/">via API</a></small>
+      </section>
+
+    </section>
+
+
+    <section>
+      <section>
+        <h2>git bisect</h2>
+        <h4>...When did that bug come in?</h4>
+      </section>
+
+      <section>
+        <img src="assets/git-bisect.png" class="stretch">
+      </section>
+
+      <section>
+        <blockquote>git-bisect - Use binary search to find the commit that introduced a bug</blockquote>
+        See: <a href="http://webchick.net/node/99">http://webchick.net/node/99</a>
+      </section>
+
+      <section>
+        <h2>Caveats</h2>
+        <ul>
+          <li>It's not magic</li>
+          <li>Your job to find the last time something worked</li>
+          <li>You define what "good" means- unit tests can help!</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <section>
+      <h2>References</h2>
+      <p>Git Gone Wild- SEM JS 2016 https://www.youtube.com/watch?v=8uZF1qD-gd4</p>
+
+      <p>How to undo (almost) anything with Git - https://github.com/blog/2019-how-to-undo-almost-anything-with-git</p>
+
+
+    </section>
+
+
+
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.js',
+                async: true,
+                condition: function () {
+                    return !!document.body.classList;
+                }
+            },
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.js',
+                async: true,
+                condition: function () {
+                    return !!document.body.classList;
+                }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
