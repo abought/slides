@@ -57,11 +57,19 @@
     <section>
       <section>
         <img src="assets/git-interpret-stash.png" class="stretch">
+        <aside class="notes">
+		  Git has a lot of powerful commands for special purposes, which can make you more productive at solving new problems. It's worth reading the documentation...
+	    </aside>
       </section>
 
       <section>
         <h2>(no, not really)</h2>
         <a href="https://git-man-page-generator.lokaltog.net/#ed594236d62ca97978efaf77b711ba8c">https://git-man-page-generator.lokaltog.net/</a>
+        <aside class="notes">
+          That said: although some people will tell you the documentation is easy to understand, the truth is, it's not always distinguishable from randomly generated text.
+
+          This is because the core of Git was famously written in a month, after someone made Linus Torvalds <em>grouchy</em>...
+        </aside>
       </section>
 
       <section>
@@ -79,6 +87,12 @@
     <section>
       <h2>Lots of power</h2>
       <h3>But running new commands is scary</h3>
+
+      <aside class="notes">
+        This means that at times, git syntax is clunky or inconsistent, with many weirdly named options.
+
+        I have known some developers who avoided git commands like rebase entirely, for fear of not being able to restore changes later...
+      </aside>
     </section>
 
     <section>
@@ -96,6 +110,10 @@
           Reference logs, or "reflogs", record when the tips of branches and other references were updated in
           the local repository
         </blockquote>
+
+        <aside class="notes">
+          You may be most familiar with the history feature in Git, but your repository keeps another, less obvious, record of all the changes you make while working.
+        </aside>
       </section>
 
       <section>
@@ -108,6 +126,10 @@ $ git commit -m "O(1) sort algorithm"
 
 $ git log --oneline
 2e5b760 O(1) sort algorithm</code></pre>
+
+        <aside class="notes">
+          Let's start with an example: you write some code, commit to Git, and now see a single commit in the log.
+        </aside>
       </section>
 
       <section>
@@ -117,6 +139,13 @@ $ git log --oneline
 
         <pre><code class="bash">$ git add .
 $ git commit --amend</code></pre>
+
+        <aside class="notes">
+          In the next step, you decide to make a small change- and rather than clutter your history, you decide to just amend the previous commit.
+          (this means rewriting history slightly)
+
+          It's pretty innocent as long as nothing goes wrong...
+        </aside>
       </section>
 
       <section>
@@ -126,6 +155,10 @@ $ cat test.py
 def perfect_code():
     """Documentation makes it even better!"""
   	return False</code></pre>
+
+        <aside class="notes">
+          Unfortunately, your change introduced a bug! And because you rewrote history, the old version doesn't seem to be there anymore.
+        </aside>
       </section>
 
       <section>
@@ -143,6 +176,12 @@ HEAD is now at 2e5b760... O(1) sort algorithm
 $ cat test.py
 def perfect_code():
 	return True</code></pre>
+
+        <aside class="notes">
+          Fortunately, all is not lost! Git maintains a log of every git operation you made in your repo, and you can go back, even to old "blobs" that are no longer part of your git history.
+
+          What you do once you reach that state is up to you. You might cherry-pick the old changes, or reset to that state, or something else.
+        </aside>
       </section>
 
       <section>
@@ -152,11 +191,19 @@ def perfect_code():
           <li>There is a copy of the change if you know where to look</li>
           <li>This makes it less scary to try new things</li>
         </ul>
+
+        <aside class="notes">
+          Thanks to the reflog, commands like rebase are not as scary as you'd think.
+        </aside>
       </section>
 
       <section>
         <h2>Things with reflogs</h2>
         <p>Git stash, change between branches, rebase, merges, etc</p>
+
+        <aside class="notes">
+          Ever dropped a stash and fogotten to commit the changes? The reflog can help with that too!
+        </aside>
       </section>
 
       <section>
@@ -164,7 +211,7 @@ def perfect_code():
         <ul>
           <li>Only works for changes Git knows about (unsaved files are still lost)</li>
           <li>Your reflog doesn't get pushed to GitHub- for your computer only<sup>*</sup></li>
-          <li>The reflog is not permanent, so don't forever</li>
+          <li>The reflog is not permanent, so don't wait too long</li>
         </ul>
 
         <small><sup>*</sup>...Though GitHub has its own reflog, <a href="https://objectpartners.com/2014/02/11/recovering-a-commit-from-githubs-reflog/">via API</a></small>
@@ -177,10 +224,24 @@ def perfect_code():
       <section>
         <h2>git bisect</h2>
         <h4>...When did that bug come in?</h4>
+
+        <aside class="notes">
+          We'll cover one more command today: Git bisect, which can help you trace weird bugs. It's useful when
+          you need to track down a bug that crept in months ago, or where the difference between "good" and "bad" isn't obvious from the code.
+
+          It can also be helpful in tracing down, eg, the effect of a dependency or docker change, where going through the history is tedious.
+        </aside>
       </section>
 
       <section>
         <img src="assets/git-bisect.png" class="stretch">
+
+        <aside class="notes">
+          The basic usage is conceptually simple: find a commit where the feature used to work, and one where it doesn't.
+          (It's great for "it worked months ago!" reports)
+
+          This command just automates the task of going forward in time to find when things broke.
+        </aside>
       </section>
 
       <section>
@@ -204,13 +265,7 @@ def perfect_code():
       <p>Git Gone Wild- SEM JS 2016 https://www.youtube.com/watch?v=8uZF1qD-gd4</p>
 
       <p>How to undo (almost) anything with Git - https://github.com/blog/2019-how-to-undo-almost-anything-with-git</p>
-
-
     </section>
-
-
-
-
   </div>
 </div>
 
